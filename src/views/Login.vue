@@ -12,7 +12,9 @@
                            style="width: 370px;"/>
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" @click="handleSubmit('formCustom')">登录</Button>
+                    <Button type="primary" @click="handleSubmit('formCustom')"
+                            @keydown.enter.native="handleSubmit('formCustom')">登录
+                    </Button>
                     <Button @click="handleReset('formCustom')" style="margin-left: 8px">重填</Button>
                 </FormItem>
             </Form>
@@ -84,14 +86,16 @@
                         let roleList = userData.roleList.map(item => {
                             return item.roleTag;
                         });
-                        sessionStorage.setItem("user_data", JSON.stringify(userData));
-                        sessionStorage.setItem("user_token", JSON.stringify(userData.token));
-                        sessionStorage.setItem("user_roles", JSON.stringify(roleList));
+                        localStorage.setItem("user_data", JSON.stringify(userData));
+                        localStorage.setItem("user_token", JSON.stringify(userData.token));
+                        localStorage.setItem("user_roles", JSON.stringify(roleList));
                         this.$router.push({path: './'})
                     } else {
                         this.$Message.error(res.data.msg);
                     }
-                }).catch()
+                }).catch(err => {
+                    window.console.log(err);
+                })
             }
         },
         created() {
