@@ -36,15 +36,10 @@ const router = new VueRouter({
 
 // 全局导航守卫
 router.beforeEach((to, from, next) => {
-    if (to.path === '/login') {
+    if (to.path === '/login' || localStorage.getItem("user_token")) {
         next();
     } else {
-        let userToken = localStorage.getItem("user_token");
-        if (userToken) {
-            next();
-        } else {
-            next({path: "/login"})
-        }
+        next({path: "/login"});
     }
 });
 

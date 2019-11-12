@@ -86,7 +86,7 @@
                         key: 'valid',
                         // align:'center',
                         render: (h, params) => {
-                            return h("pre", params.row.valid === 0 ? '无效' : params.row.valid === 1 ? '审核中' : params.row.valid === 2 ? '审核失败' : '审核成功');
+                            return h("span", params.row.valid === 0 ? '无效' : params.row.valid === 1 ? '审核中' : params.row.valid === 2 ? '审核失败' : '审核成功');
                         }
                     }
                 ],

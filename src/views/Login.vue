@@ -8,12 +8,12 @@
                            style="width: 370px;"/>
                 </FormItem>
                 <FormItem prop="password">
-                    <Input type="password" v-model="formCustom.password" placeholder="请输入密码" prefix="md-lock"
+                    <Input @keydown.enter.native="handleSubmit('formCustom')" type="password"
+                           v-model="formCustom.password" placeholder="请输入密码" prefix="md-lock"
                            style="width: 370px;"/>
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" @click="handleSubmit('formCustom')"
-                            @keydown.enter.native="handleSubmit('formCustom')">登录
+                    <Button type="primary" @click="handleSubmit('formCustom')">登录
                     </Button>
                     <Button @click="handleReset('formCustom')" style="margin-left: 8px">重填</Button>
                 </FormItem>

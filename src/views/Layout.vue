@@ -1,30 +1,15 @@
 <template>
     <div class="layout">
         <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-            <Menu @on-select="onSelect" active-name="1-1" theme="dark" width="auto" :open-names="['1']">
-                <Submenu name="1">
+            <Menu @on-select="onSelect" :open-names="openNames" :active-name="activeName" theme="dark" width="auto">
+                <Submenu :name="menu.name" v-for="(menu,index) of menus" :key="index">
                     <template slot="title">
-                        <Icon type="ios-navigate"></Icon>
-                        首页
+                        <Icon :type="menu.icon"></Icon>
+                        {{menu.title}}
                     </template>
-                    <MenuItem name="1-1" to="profile">个人信息</MenuItem>
-                    <MenuItem name="1-2" to="question">题库中心</MenuItem>
-                </Submenu>
-                <Submenu name="2">
-                    <template slot="title">
-                        <Icon type="ios-keypad"></Icon>
-                        Item 2
-                    </template>
-                    <MenuItem name="2-1">Option 1</MenuItem>
-                    <MenuItem name="2-2">Option 2</MenuItem>
-                </Submenu>
-                <Submenu name="3">
-                    <template slot="title">
-                        <Icon type="ios-analytics"></Icon>
-                        Item 3
-                    </template>
-                    <MenuItem name="3-1">Option 1</MenuItem>
-                    <MenuItem name="3-2">Option 2</MenuItem>
+                    <MenuItem :name="child.name" :to="child.path" v-for="(child,idx) of menu.children" :key="idx">
+                        {{child.title}}
+                    </MenuItem>
                 </Submenu>
             </Menu>
         </Sider>
@@ -48,7 +33,44 @@
     export default {
         data() {
             return {
-                user: {userName: ""}
+                user: {
+                    userName: ""
+                },
+                openNames: ['home'],
+                activeName: "home-profile",
+                menus: [
+                    {
+                        title: "首页",
+                        name: "home",
+                        icon: "ios-navigate",
+                        children: [
+                            {
+                                title: "个人信息",
+                                name: "home-profile",
+                                path: "profile"
+                            }, {
+                                title: "题目中心",
+                                name: "home-question",
+                                path: "question"
+                            }
+                        ]
+                    }, {
+                        title: "菜单1",
+                        name: "caiDan",
+                        icon: "ios-bluetooth",
+                        children: [
+                            {
+                                title: "子菜单1",
+                                name: "caiDan-1",
+                                path: "1"
+                            }, {
+                                title: "子菜单2",
+                                name: "caiDan-2",
+                                path: "2"
+                            }
+                        ]
+                    }
+                ]
             }
         },
         methods: {
@@ -66,8 +88,11 @@
                     this.$Message.error(err.data.msg);
                 })
             },
+
+            // 点击菜单回调方法
             onSelect() {
-                // alert(item);
+                // this.activeName = name;
+                // this.openNames = [name.split('-')[0]];
             }
         },
         created() {
