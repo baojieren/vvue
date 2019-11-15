@@ -1,0 +1,6 @@
+.main-content-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: calc(100vh - 135px);
+}

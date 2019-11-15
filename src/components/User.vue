@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div>user组件{{this.$route.params.id}}</div>
 </template>
 
 <script>

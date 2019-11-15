@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '@/router'
+import ViewUI from 'view-design'
 
 const instance = axios.create({
     baseURL: process.env.NODE_ENV === 'development' ? 'https://api.baojie.ink' : 'https://api.baojie.ink',
@@ -14,6 +15,7 @@ instance.interceptors.request.use(config => {
     }
     return config
 }, error => {
+    ViewUI.LoadingBar.error();
     return Promise.reject(error)
 });
 
@@ -25,6 +27,7 @@ instance.interceptors.response.use(res => {
     }
     return res;
 }, error => {
+    ViewUI.LoadingBar.error();
     return Promise.reject(error)
 });
 export default instance;

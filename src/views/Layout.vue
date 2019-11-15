@@ -1,18 +1,21 @@
 <template>
     <div class="layout">
         <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-            <Menu @on-select="onSelect" :open-names="openNames" :active-name="activeName" theme="dark" width="auto">
+            <Menu :open-names="openNames" :active-name="this.$route.name" theme="dark"
+                  width="auto" ref="menu">
                 <Submenu :name="menu.name" v-for="(menu,index) of menus" :key="index">
                     <template slot="title">
                         <Icon :type="menu.icon"></Icon>
                         {{menu.title}}
                     </template>
-                    <MenuItem :name="child.name" :to="child.path" v-for="(child,idx) of menu.children" :key="idx">
+                    <MenuItem :name="child.pathName" :to="child.pathName" v-for="(child,idx) of menu.children"
+                              :key="idx">
                         {{child.title}}
                     </MenuItem>
                 </Submenu>
             </Menu>
         </Sider>
+
         <Layout :style="{marginLeft: '200px'}">
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
                 <div class="userLogo">
@@ -36,37 +39,29 @@
                 user: {
                     userName: ""
                 },
-                openNames: ['home'],
-                activeName: "home-profile",
                 menus: [
                     {
-                        title: "首页",
-                        name: "home",
+                        title: "用户",
+                        name: "user",
                         icon: "ios-navigate",
                         children: [
                             {
                                 title: "个人信息",
-                                name: "home-profile",
-                                path: "profile"
-                            }, {
-                                title: "题目中心",
-                                name: "home-question",
-                                path: "question"
+                                pathName: "user-profile",
                             }
                         ]
                     }, {
-                        title: "菜单1",
-                        name: "caiDan",
-                        icon: "ios-bluetooth",
+                        title: "题目",
+                        name: "question",
+                        icon: "md-list",
                         children: [
                             {
-                                title: "子菜单1",
-                                name: "caiDan-1",
-                                path: "1"
-                            }, {
-                                title: "子菜单2",
-                                name: "caiDan-2",
-                                path: "2"
+                                title: "题目列表",
+                                pathName: "question-list",
+                            },
+                            {
+                                title: "题目详情",
+                                pathName: "question-edit",
                             }
                         ]
                     }
@@ -90,11 +85,22 @@
             },
 
             // 点击菜单回调方法
-            onSelect() {
-                // this.activeName = name;
-                // this.openNames = [name.split('-')[0]];
+            onSelect(name) {
+                if (this.$route.name !== name) {
+                    this.$router.push({name: name});
+                }
             }
         },
+
+        computed: {
+            openNames() {
+                this.$nextTick(() => {
+                    this.$refs.menu.updateOpened();
+                });
+                return [this.$route.name.split("-")[0]];
+            }
+        },
+
         created() {
             let userData = localStorage.getItem("user_data");
             if (userData === null) {
