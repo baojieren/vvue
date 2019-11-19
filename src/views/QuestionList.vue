@@ -4,7 +4,7 @@
             <BreadcrumbItem>题目</BreadcrumbItem>
             <BreadcrumbItem>题目列表</BreadcrumbItem>
         </Breadcrumb>
-        <div class="main-content-box">
+        <div class="global-content-box">
             <div class="search-area">
                 <Form ref="searchModel" :model="searchModel" :inline="true" label-position="right" :label-width="80">
                     <FormItem label="年级:">
@@ -35,7 +35,7 @@
             </div>
             <div class="table-area">
                 <Table :loading="loading" border :columns="tableColumns" :data="tableData"></Table>
-                <div class="page">
+                <div class="global-pager">
                     <Page :total="totalSum" show-total @on-change="doChange" :current="searchModel.pageIndex"
                           :page-size="searchModel.pageSize" size="small"/>
                 </div>
@@ -200,15 +200,4 @@
 </script>
 
 <style scoped>
-    .content-box {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        min-height: 700px;
-    }
-
-    .page {
-        text-align: right;
-        margin-top: 10px;
-    }
 </style>

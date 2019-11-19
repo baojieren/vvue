@@ -4,7 +4,7 @@
             <BreadcrumbItem>首页</BreadcrumbItem>
             <BreadcrumbItem>个人信息</BreadcrumbItem>
         </Breadcrumb>
-        <div class="main-content-box">
+        <div class="global-content-box">
             <Card>
                 <p slot="title">当前收益:</p>
                 <div>

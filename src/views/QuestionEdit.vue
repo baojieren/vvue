@@ -5,7 +5,7 @@
             <BreadcrumbItem>题目详情</BreadcrumbItem>
         </Breadcrumb>
 
-        <div class="main-content-box">
+        <div class="global-content-box">
             {{questionInfo.questionData.questionTextFirst}}
         </div>
     </div>
