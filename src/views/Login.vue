@@ -79,16 +79,12 @@
             },
             // 登录
             doLogin() {
-                this.axios.post('xmg/login', this.formCustom).then(res => {
+                this.axios.post('jiaju/user/login', this.formCustom).then(res => {
                     if (res.data.code === 0) {
                         let userData = res.data.data;
 
-                        let roleList = userData.roleList.map(item => {
-                            return item.roleTag;
-                        });
                         localStorage.setItem("user_data", JSON.stringify(userData));
                         localStorage.setItem("user_token", JSON.stringify(userData.token));
-                        localStorage.setItem("user_roles", JSON.stringify(roleList));
                         this.$router.push({path: './'})
                     } else {
                         this.$Message.error(res.data.msg);

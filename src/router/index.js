@@ -13,21 +13,19 @@ const routes = [
         component: Login
     }, {
         path: '/',
+        name: 'home',
         component: Home,
-        redirect: 'user-profile',
+        redirect: 'scenes-list',
         children: [
             {
-                path: '/user-profile',
-                name: 'user-profile',
-                component: () => import('@/views/Profile.vue')
-            }, {
-                path: '/question-list',
-                name: 'question-list',
-                component: () => import('@/views/QuestionList.vue')
-            }, {
-                path: '/question-edit',
-                name: 'question-edit',
-                component: () => import('@/views/QuestionEdit.vue')
+                path: '/scenes-list',
+                name: 'scenes-list',
+                component: () => import('@/views/ScenesList.vue')
+            },
+            {
+                path: '/scenes-edit',
+                name: 'scenes-edit',
+                component: () => import('@/views/ScenesEdit.vue')
             }
         ]
     }

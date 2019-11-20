@@ -41,27 +41,13 @@
                 },
                 menus: [
                     {
-                        title: "用户",
-                        name: "user",
-                        icon: "ios-navigate",
+                        title: "系列管理",
+                        name: "scenes",
+                        icon: "md-albums",
                         children: [
                             {
-                                title: "个人信息",
-                                pathName: "user-profile",
-                            }
-                        ]
-                    }, {
-                        title: "题目",
-                        name: "question",
-                        icon: "md-list",
-                        children: [
-                            {
-                                title: "题目列表",
-                                pathName: "question-list",
-                            },
-                            {
-                                title: "题目详情",
-                                pathName: "question-edit",
+                                title: "系列列表",
+                                pathName: "scenes-list",
                             }
                         ]
                     }
@@ -70,18 +56,9 @@
         },
         methods: {
             doLogout() {
-                this.axios.get("/xmg/logout").then(res => {
-                    if (res.data.code === 0) {
-                        localStorage.clear();
-                        sessionStorage.clear();
-                        this.$router.push({name: "login"});
-                        this.$Message.success(res.data.msg);
-                    } else {
-                        this.$Message.error(res.data.msg);
-                    }
-                }).catch(err => {
-                    this.$Message.error(err.data.msg);
-                })
+                localStorage.clear();
+                sessionStorage.clear();
+                this.$router.push({name: "login"});
             },
 
             // 点击菜单回调方法
