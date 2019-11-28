@@ -74,7 +74,7 @@
                 imgUpdateData: {
                     key: "",
                     token: "",
-                    domain: 'http://upload-z2.qiniup.com'
+                    domain: 'https://upload-z2.qiniup.com'
                 },
 
                 // 保存系列的表单数据
@@ -132,6 +132,7 @@
                     if (res.data.code === 0) {
                         this.imgUpdateData.key = res.data.data.key;
                         this.imgUpdateData.token = res.data.data.token;
+                        this.imgUpdateData.domain = res.data.data.domain;
                         this.$refs.upload.post(file);
                     } else {
                         this.$Message.error(res.data.msg);
