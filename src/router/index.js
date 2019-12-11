@@ -8,6 +8,11 @@ Vue.use(VueRouter);
 
 const routes = [
     {
+        path: '/learn',
+        name: 'learn',
+        component: () => import('@/views/Learn.vue')
+    },
+    {
         path: '/login',
         name: 'login',
         component: Login
