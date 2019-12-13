@@ -1,7 +1,8 @@
 <template>
     <div>
-        <Btn :title="title" :ren="rr" :vv="ivalue" @clickBtn="changeValue">
-        </Btn>
+        <svg width="200" height="200">
+            <ellipse cx="60" cy="60" ry="40" rx="20" stroke="black" stroke-width="5" fill="silver"/>
+        </svg>
     </div>
 </template>
 
@@ -11,6 +12,7 @@
         name: "Learn",
         data() {
             return {
+                beShow: true,
                 ivalue: 1,
                 icheaked: null,
                 iselected: null,
@@ -27,9 +29,9 @@
                     }
 
                 ],
-                title:'按钮名称',
-                rr:{
-                    name:"版本"
+                title: '按钮名称',
+                rr: {
+                    name: "版本"
                 }
             }
         },
@@ -45,5 +47,7 @@
 </script>
 
 <style scoped>
-
+.red{
+    fill:red
+}
 </style>
